@@ -12,7 +12,7 @@ QString AView::className()
 QString AView::varName()
 {
     char buf[66];
-    sprintf(buf, "var_%08x", p);
+    sprintf(buf, "var_%08x", this);
     return buf;
 }
 

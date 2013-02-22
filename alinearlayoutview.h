@@ -1,7 +1,9 @@
 #ifndef ALINEARLAYOUTVIEW_H
 #define ALINEARLAYOUTVIEW_H
 
-class ALinearLayoutView : public ALinearLayout
+#include <alayoutview.h>
+
+class ALinearLayoutView : public ALayoutView
 {
 public:
     ALinearLayoutView();
