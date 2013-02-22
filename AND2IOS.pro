@@ -21,11 +21,15 @@ SOURCES += main.cpp \
     atextview.cpp \
     alayoutview.cpp \
     alinearlayoutview.cpp \
-    alayoutfile.cpp
+    alayoutfile.cpp \
+    aimageview.cpp \
+    abutton.cpp
 
 HEADERS += \
     aview.h \
     atextview.h \
     alayoutview.h \
     alinearlayoutview.h \
-    alayoutfile.h
+    alayoutfile.h \
+    aimageview.h \
+    abutton.h
