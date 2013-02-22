@@ -24,8 +24,8 @@ void AImageView::read(QDomNode &element)
             src.clear();
     }
 
-    posX = e.attribute("android:paddingLeft");
-    posY = e.attribute("android:paddingTop");
+    posX = QString.number(e.attribute("android:paddingLeft").toFloat());
+    posY = QString.number(e.attribute("android:paddingTop").toFloat());
     width = "0";
     height = "0";
 }
