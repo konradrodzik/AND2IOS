@@ -23,13 +23,19 @@ void AImageView::read(QDomNode &element)
         else
             src.clear();
     }
+
+    posX = e.attribute("android:paddingLeft");
+    posY = e.attribute("android:paddingTop");
+    width = "0";
+    height = "0";
 }
 
 void AImageView::write(QTextStream& writer, const QString& parentControlName)
 {
-    writer << varName() << "= [UIImageView alloc] initWithImage:[UIImage imageNamed@]];" << endl
+    AView::write(writer, parentControlName);
+    writer << varName() << "= [[UIImageView alloc] initWithImage:[UIImage imageNamed@]];" << endl
            << "[" << parentControlName << " addSubview:" << varName() << "];" << endl
-           << "[" << varName() << "setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")];" << endl;
+           << "[" << varName() << " setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")];" << endl;
 
     if(!srcImage.isEmpty() && !srcFileName.isEmpty()) {
         QFile outputFile(outputDir.absoluteFilePath(srcFileName));

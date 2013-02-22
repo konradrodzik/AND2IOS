@@ -79,8 +79,8 @@ int main(int argc, char *argv[])
     outputSourceFile.open(QFile::WriteOnly);
     QTextStream outputSource(&outputSourceFile);
 
-    outputHeader << "#include <UIView.h>" << endl << endl;
     outputSource << "#include \"" << HEADER_NAME << "\"" << endl << endl;
+    outputSource << "#import \"" << HEADER_NAME << "\"" << endl << endl;
 
     foreach(ALayoutFile* file, layouts) {
       file->writeHeader(outputHeader);

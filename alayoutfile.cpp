@@ -87,7 +87,10 @@ void ALayoutFile::writeSource(QTextStream &writer)
            << "    [super layoutSubviews];" << endl;
 
     foreach(AView* child, allChilds()) {
-        writer << "\t[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->width << ", " << child->height << ")];" << endl;
+        if (child->posX.length() > 0 && child->posY.length() > 0) {
+            writer << "\t[" << child->varName() << "sizeToFit]" << endl;
+            writer << "\t[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->width << ", " << child->height << ")];" << endl;
+        }
     }
 
     writer << "}" << endl << endl;

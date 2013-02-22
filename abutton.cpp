@@ -37,6 +37,11 @@ void AButton::read(QDomNode &element)
     AView::read(element);
     QDomElement e = element.toElement();
 
-    QString paddingLeft = e.attribute("android:paddingLeft");
-
+    text = e.attribute("android:text");
+    posX = e.attribute("android:paddingLeft");
+    posY = e.attribute("android:paddingTop");
+    width = "0";
+    height = "0";
+    onClickMethodName = e.attribute("android:onClick");
+    backgroundImageName = e.attribute("android:background");
 }
