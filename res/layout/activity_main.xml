@@ -33,10 +33,10 @@
 
 <RelativeLayout
 	android:paddingLeft="15dip"
-	android:paddingTop="100dip"
+	android:paddingTop="300dip"
 	android:layout_width="100dip"
 	android:layout_height="100dip"
-	android:textColor="#FFFF0000">
+	android	:textColor="#FFFF0000">
 
 	    <TextView android:id="@+id/text_in_relative"
 		android:text="Text inside Relative layout"
