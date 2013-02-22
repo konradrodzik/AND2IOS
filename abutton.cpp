@@ -7,7 +7,7 @@ AButton::AButton()
 
 void AButton::write(QTextStream& writer, const QString& parentControlName)
 {
-    writer << varName() << " = [UIButton buttonWithType:UIButtonTypeCustom];" << endl;
+    writer << varName() << " = [UIButton buttonWithType:UIButtonTypeRoundedRect];" << endl;
     writer << varName() << ".frame = CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ");" << endl;
     if (text.length() > 0)
     {
