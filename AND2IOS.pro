@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     atextview.cpp \
     alayoutview.cpp \
     alinearlayoutview.cpp \
-    ../abutton.cpp \
+    alayoutfile.cpp \
+    aimageview.cpp \
     abutton.cpp
 
 HEADERS += \
@@ -29,4 +30,6 @@ HEADERS += \
     atextview.h \
     alayoutview.h \
     alinearlayoutview.h \
+    alayoutfile.h \
+    aimageview.h \
     abutton.h
