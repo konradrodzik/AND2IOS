@@ -30,10 +30,10 @@ void ATextView::read(QDomNode &element)
         if(color.startsWith("#")) {
             QByteArray rgb = QByteArray::fromHex(color.mid(1).toLatin1());
             if(rgb.count() == 4) {
-                ta = rgb[0];
-                tr = rgb[1];
-                tg = rgb[2];
-                tb = rgb[3];
+                ta = QString::number(rgb[0] / 255.0f);
+                tr = QString::number(rgb[1] / 255.0f);
+                tg = QString::number(rgb[2] / 255.0f);
+                tb = QString::number(rgb[3] / 255.0f);
             }
         }
     }
