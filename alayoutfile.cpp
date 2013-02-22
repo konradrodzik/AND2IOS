@@ -60,7 +60,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
 
     writer << "-(id) initWithFrame:(CGRect)rect {" << endl
            << "\tif(self = [super initWithFrame:rect]) {" << endl
-           << "self.backgroundColor = [UIColor whiteColor];" << endl;
+           << "\t\tself.backgroundColor = [UIColor whiteColor];" << endl;
 
     QByteArray data;
 
