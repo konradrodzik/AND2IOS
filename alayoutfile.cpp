@@ -15,7 +15,7 @@ void ALayoutFile::writeHeader(QTextStream &writer)
   writer << "@interface " << varName() << " : UIView {" << endl;
 
   foreach(AView* child, allChilds()) {
-    writer << "\t" << child->className() << " *" << child->varName() << endl;
+    writer << "\t" << child->className() << " *" << child->varName() << ";" << endl;
   }
 
   writer << "}" << endl << endl;
@@ -29,7 +29,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
     writer << "@implementation " << varName() << "{" << endl
          << "}" << endl;
     foreach(AView* child, allChilds()) {
-        writer << "@synthesize" << child->varName() << ";" << endl;
+        writer << "@synthesize " << child->varName() << ";" << endl;
     }
 
     writer << endl;
@@ -40,7 +40,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
         child->write(writer, child->parent->varName());
         writer << endl;
     }
-    writer << "    " << endl
+    writer << "    }" << endl
            << "    return self;" << endl
            << "}" << endl << endl;
 
@@ -48,7 +48,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
            << "    [super layoutSubviews];" << endl;
 
     foreach(AView* child, allChilds()) {
-        writer << "[" << child->varName() << "setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->width << ", " << child->height << ")];" << endl;
+        writer << "[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->width << ", " << child->height << ")];" << endl;
     }
 
     writer << "}" << endl << endl;
