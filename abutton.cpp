@@ -31,3 +31,12 @@ void AButton::write(QTextStream& writer, const QString& parentControlName)
 
     writer << "[" << parentControlName << " addSubview:" << varName() << "];" << endl;
 }
+
+void AButton::read(QDomNode &element)
+{
+    AView::read(element);
+    QDomElement e = element.toElement();
+
+    QString paddingLeft = e.attribute("android:paddingLeft");
+
+}

@@ -5,6 +5,23 @@
 #include <QList>
 #include <QTextStream>
 #include <QtXml>
+#include <QDir>
+
+extern QDir layoutDir;
+extern QDir drawableDir;
+
+inline QString explodeName(QString name) {
+    QStringList list = name.split('/');
+    if(list.size() != 2)
+        return QString();
+    name = list[1];
+    return name;
+}
+
+inline QString captializeName(QString name) {
+    // QString out = QString();
+	return QString();
+}
 
 class AView
 {

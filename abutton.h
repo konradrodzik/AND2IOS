@@ -17,6 +17,7 @@ public:
     AButton();
     QString className() { return "UIButton"; }
     void write(QTextStream& writer, const QString& parentControlName);
+    virtual void read(QDomNode& element);
 };
 
 #endif // ABUTTON_H

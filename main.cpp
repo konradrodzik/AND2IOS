@@ -11,6 +11,9 @@
 #include "abutton.h"
 #include "aimageview.h"
 
+QDir layoutDir;
+QDir drawableDir;
+
 AView *AView::createView(const QString &name, AView* view)
 {
   AView* newView;
@@ -34,21 +37,21 @@ AView *AView::createView(const QString &name, AView* view)
   return newView;
 }
 
-
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    QDir current = QDir::current();
-    current.cd("res/layout");
+    layoutDir = QDir::current();
+    layoutDir.cd("res/layout");
 
-    QStringList layoutFiles = current.entryList(QStringList("*.xml"));
+    drawableDir = QDir::current();
+    drawableDir.cd("res/drawable");
 
     QList<ALayoutFile*> layouts;
 
-    foreach(QString fileName, layoutFiles) {
+    foreach(QString fileName, layoutDir.entryList(QStringList("*.xml"))) {
       QDomDocument doc;
-      QFile file(current.absoluteFilePath(fileName));
+      QFile file(layoutDir.absoluteFilePath(fileName));
       if(!file.open(QFile::ReadOnly))
         continue;
       doc.setContent(&file);
@@ -75,7 +78,7 @@ int main(int argc, char *argv[])
       file->writeSource(outputSource);
     }
 
-    return a.exec();
+    return 0;
 }
 
 
