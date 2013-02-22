@@ -15,7 +15,8 @@
     
     <TextView android:id="@+id/name_collision_title"
 		android:text="Name Collision"
-		android:textColor="#FF0000FF" 
+		android:textColor="#FF0000FF"
+		android:backgroundColor="FFFF0000" 
 		android:paddingLeft="15"
 		android:paddingTop="100"
 		android:layout_width="wrap_content"
