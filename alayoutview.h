@@ -7,7 +7,8 @@ class ALayoutView : public AView
 {
 public:
     ALayoutView();
-    QString className() { return "UILayoutView"; }
+    virtual void read(QDomElement& element);
+    virtual void write(QTextStream& writer, const QString& parentControlName);
 };
 
 #endif // ALAYOUTVIEW_H

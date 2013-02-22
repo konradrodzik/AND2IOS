@@ -19,6 +19,9 @@ public:
     virtual QString varName();
     virtual void read(QDomElement& element);
     virtual void write(QTextStream& writer, const QString& parentControlName);
+
+public:
+    static AView* createView(const QString& name);
 };
 
 #endif // AVIEW_H

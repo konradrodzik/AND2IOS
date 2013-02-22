@@ -8,7 +8,6 @@ class ATextView : public AView
 public:
     ATextView();
     QString className() { return "UITextView"; }
-
 };
 
 #endif // ATEXTVIEW_H
