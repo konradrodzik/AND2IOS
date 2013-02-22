@@ -6,7 +6,7 @@ ATextView::ATextView()
 
 void ATextView::write(QTextStream& writer, const QString& parentControlName)
 {
-    writer << varName() << " = [UILabel alloc] initWithRect:CGRectZero];" << endl;
+    writer << varName() << " = [[UILabel alloc] initWithRect:CGRectZero];" << endl;
     if (backgroundColor.length() > 0) {
         writer << "[" << varName() << " setBackgroundColor:" << backgroundColor << "];" << endl;
     }

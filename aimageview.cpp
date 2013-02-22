@@ -24,8 +24,8 @@ void AImageView::read(QDomNode &element)
 void AImageView::write(QTextStream& writer, const QString& parentControlName)
 {
     AView::write(writer, parentControlName);
-    writer << varName() << "= [UIImageView alloc] initWithImage:[UIImage imageNamed@]];" << endl
+    writer << varName() << "= [[UIImageView alloc] initWithImage:[UIImage imageNamed@]];" << endl
            << "[" << parentControlName << " addSubview:" << varName() << "];" << endl
-           << "[" << varName() << "setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")];" << endl;
+           << "[" << varName() << " setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")];" << endl;
 
 }
