@@ -12,7 +12,7 @@ void ATextView::write(QTextStream& writer, const QString& parentControlName)
     }
 
     if (color.length() > 0) {
-        writer << "[" << varName() << " setColor:" << "[UIColor colorWithRed:" << tr << " green:" << tg << "blue:" << tb << " alpha:" << ta << "]]" << endl;
+        writer << "[" << varName() << " setTextColor:" << "[UIColor colorWithRed:" << tr << " green:" << tg << " blue:" << tb << " alpha:" << ta << "]];" << endl;
     }
 
     writer << "[" << varName() << " setText:@\"" << text << "\"];" << endl
@@ -30,10 +30,10 @@ void ATextView::read(QDomNode &element)
         if(color.startsWith("#")) {
             QByteArray rgb = QByteArray::fromHex(color.mid(1).toLatin1());
             if(rgb.count() == 4) {
-                ta = QString::number(rgb[0] / 255.0f);
-                tr = QString::number(rgb[1] / 255.0f);
-                tg = QString::number(rgb[2] / 255.0f);
-                tb = QString::number(rgb[3] / 255.0f);
+                ta = QString::number(((unsigned char)rgb[0]) / 255.0f);
+                tr = QString::number(((unsigned char)rgb[1]) / 255.0f);
+                tg = QString::number(((unsigned char)rgb[2]) / 255.0f);
+                tb = QString::number(((unsigned char)rgb[3]) / 255.0f);
             }
         }
     }
