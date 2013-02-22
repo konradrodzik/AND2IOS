@@ -28,4 +28,11 @@ void AImageView::write(QTextStream& writer, const QString& parentControlName)
 void AImageView::read(QDomNode &element)
 {
     AView::read(element);
+    QDomElement e = element.toElement();
+
+    posX = e.attribute("android:paddingLeft");
+    posY = e.attribute("android:paddingRight");
+    width = "0";
+    height = "0";
+    src = e.attribute("android:src");
 }
