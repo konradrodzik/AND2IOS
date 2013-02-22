@@ -10,5 +10,6 @@ void ATextView::write(QTextStream& writer, const QString& parentControlName)
            << "[" << varName() << " setBackgroundColor:" << backgroundColor << "]\n"
            << "[" << varName() << " setColor:" << color << "]\n"
            << "[" << varName() << "setText:@\"" << text << "\"]\n"
-           << "[" << parentControlName << " addSubview:" << varName() << "]\n";
+           << "[" << parentControlName << " addSubview:" << varName() << "]\n"
+           << "[" << varName() << "setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")]";
 }
