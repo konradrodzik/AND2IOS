@@ -4,12 +4,11 @@
 #include <QString>
 #include "aview.h"
 
-#include "alayoutview.h"
+#include "atextview.h"
 
-class AButton : public ALayoutView
+class AButton : public ATextView
 {
 public:
-    QString text;
     QString backgroundImageName;
     QString imageName;
     QString onClickMethodName;

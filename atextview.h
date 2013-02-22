@@ -11,6 +11,7 @@ public:
     ATextView();
     QString className() { return "UILabel"; }
     void write(QTextStream& writer, const QString& parentControlName);
+    virtual void read(QDomNode& element);
 };
 
 #endif // ATEXTVIEW_H
