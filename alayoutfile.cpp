@@ -29,7 +29,7 @@ void ALayoutFile::writeHeader(QTextStream &writer)
   }
   writer << endl;
 
-  writer << "-(void)initWithFrame:(CGRect)rect;" << endl;
+  writer << "-(id) initWithFrame:(CGRect)rect;" << endl;
   writer << endl;
   writer << "@end" << endl << endl;
 }
@@ -55,7 +55,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
 
     writer << endl;
 
-    writer << "-(void)initWithFrame:(CGRect)rect {" << endl
+    writer << "-(id) initWithFrame:(CGRect)rect {" << endl
            << "\tif(self = [super init]) {" << endl;
 
     QByteArray data;
