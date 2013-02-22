@@ -13,7 +13,8 @@ void ALinearLayoutView::write(QTextStream &writer, const QString &parentControlN
 {
     ALayoutView::write(writer, parentControlName);
     writer << varName() << "= [[UIView alloc] initWithFrame:CGRectZero];" << endl
-           << "[" << parentControlName << " addSubview:" << varName() << "];" << endl;
+           << "[" << parentControlName << " addSubview:" << varName() << "];" << endl
+           << varName() << ".userInteractionEnabled = YES;" << endl;
     if (posX.length() > 0 && posY.length() > 0) {
         writer << "[" << varName() << "setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")];" << endl;
     } else if (parentControlName.length() > 0) {

@@ -49,6 +49,10 @@ public:
     virtual QString varName();
     virtual void read(QDomNode& element);
     virtual void write(QTextStream& writer, const QString& parentControlName);
+    virtual void writeSource(QTextStream& writer);
+    virtual void writeHeader(QTextStream& writer);
+
+    class ALayoutFile* file() const;
 
     virtual QList<AView*> allChilds();
     bool isLocal() const {

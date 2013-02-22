@@ -29,7 +29,10 @@ void ALayoutFile::writeHeader(QTextStream &writer)
   }
   writer << endl;
 
-  writer << "-(id) initWithFrame:(CGRect)rect;" << endl;
+  writer << "-(id) initWithFrame:(CGRect)rect;" << endl;  
+  foreach(AView* child, allChilds()) {
+      child->writeHeader(writer);
+  }
   writer << endl;
   writer << "@end" << endl << endl;
 }
@@ -43,7 +46,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
         writer << "@property(nonatomic, strong) " << child->className() << " *" << child->varName() << ";" << endl;
     }
     writer << "@end" << endl << endl;
-    // XYZ: function prolog
+
     writer << "@implementation " << name << "{" << endl
          << "}" << endl;
     writer << endl;
@@ -56,7 +59,8 @@ void ALayoutFile::writeSource(QTextStream &writer)
     writer << endl;
 
     writer << "-(id) initWithFrame:(CGRect)rect {" << endl
-           << "\tif(self = [super init]) {" << endl;
+           << "\tif(self = [super initWithFrame:rect]) {" << endl
+           << "self.backgroundColor = [UIColor whiteColor];" << endl;
 
     QByteArray data;
 
@@ -89,13 +93,17 @@ void ALayoutFile::writeSource(QTextStream &writer)
     foreach(AView* child, allChilds()) {
         if (child->posX.length() > 0 && child->posY.length() > 0) {
             writer << "\t[" << child->varName() << " sizeToFit];" << endl;
-            writer << "\t[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->width << ", " << child->height << ")];" << endl;
+            writer << "\t[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->varName() << ".frame.size.width, " << child->varName() << ".frame.size.height" << ")];" << endl;
         }
     }
 
     writer << "}" << endl << endl;
 
-  // XYZ: function epilog
+    foreach(AView* child, allChilds()) {
+        child->writeSource(writer);
+    }
+
+    writer << endl;
 
     writer << "@end";
 }
