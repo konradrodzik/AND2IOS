@@ -1,5 +1,5 @@
 #include "alayoutfile.h"
-
+#include <QDebug>
 ALayoutFile::ALayoutFile()
 {
 
@@ -41,8 +41,6 @@ void ALayoutFile::writeSource(QTextStream &writer)
 {
     writer << "@interface " << name << "()" << endl;
     foreach(AView *child, allChilds()) {
-        if(child->isLocal())
-            continue;
         writer << "@property(nonatomic, strong) " << child->className() << " *" << child->varName() << ";" << endl;
     }
     writer << "@end" << endl << endl;
@@ -51,8 +49,6 @@ void ALayoutFile::writeSource(QTextStream &writer)
          << "}" << endl;
     writer << endl;
     foreach(AView* child, allChilds()) {
-        if(child->isLocal())
-            continue;
         writer << "@synthesize " << child->varName() << ";" << endl;
     }
 
@@ -67,8 +63,6 @@ void ALayoutFile::writeSource(QTextStream &writer)
     {
         QTextStream newStream(&data);
         foreach(AView* child, allChilds()) {
-            if(child->isLocal())
-                newStream << child->className() << " *" << child->varName() << " = NULL;" << endl;
             child->write(newStream, child->parent->varName());
             newStream << endl;
         }
@@ -94,6 +88,8 @@ void ALayoutFile::writeSource(QTextStream &writer)
         if (child->posX.length() > 0 && child->posY.length() > 0) {
             writer << "\t[" << child->varName() << " sizeToFit];" << endl;
             writer << "\t[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->varName() << ".frame.size.width, " << child->varName() << ".frame.size.height" << ")];" << endl;
+        } else if (child->varName().compare("self")) {
+            writer << "\t" << child->varName() << ".frame = self.bounds;" << endl;
         }
     }
 
