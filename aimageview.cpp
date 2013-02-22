@@ -16,7 +16,7 @@ void AImageView::read(QDomNode &element)
     }
 
     posX = e.attribute("android:paddingLeft");
-    posY = e.attribute("android:paddingRight");
+    posY = e.attribute("android:paddingTop");
     width = "0";
     height = "0";
 }
