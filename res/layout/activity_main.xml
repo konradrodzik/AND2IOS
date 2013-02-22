@@ -1,16 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" 
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:textColor="#FF00FF">
     
     <ImageView android:id="@+id/name_collision_image"
-        android:paddingLeft="15dip"
+        	android:paddingLeft="15dip"
 		android:paddingTop="15dip"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:scaleType="center" 
 		android:src="@drawable/name_collision_image" />
     
     <TextView android:id="@+id/name_collision_title"
@@ -30,5 +30,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="createNewViewMethod" />
+
+<RelativeLayout
+	android:paddingLeft="15dip"
+	android:paddingTop="100dip"
+	android:layout_width="100dip"
+	android:layout_height="100dip"
+	android	:textColor="#FFFF0000">
+
+	    <TextView android:id="@+id/name_collision_title"
+		android:text="Text inside Relative layout"
+		android:textColor="#FF0000FF"
+		android:background="#FFFF0000" 
+		android:paddingLeft="10dip"
+		android:paddingTop="10dip"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
+
+</RelativeLayout>
 
 </RelativeLayout>
