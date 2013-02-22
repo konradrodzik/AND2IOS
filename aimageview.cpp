@@ -43,8 +43,8 @@ void AImageView::write(QTextStream& writer, const QString& parentControlName)
             outputFile.write(srcImage);
         }
 
-        write << "[" << varName() << " setImage:[UIImage imageNamed:@" << src  << "]];" << endl;
+        writer << "[" << varName() << " setImage:[UIImage imageNamed:@\"" << src  << "\"]];" << endl;
     }
 
-    write << "[" << parentControlName << "addSubview:" <<varName() << "];" << endl;
+    writer << "[" << parentControlName << " addSubview:" <<varName() << "];" << endl;
 }
