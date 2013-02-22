@@ -27,6 +27,8 @@ AView *AView::createView(const QString &name, AView* view)
     newView = new AView;
   else if(name == "LinearLayout")
     newView = new ALinearLayoutView;
+  else if(name == "RelativeLayout")
+    newView = new ALinearLayoutView;
   else if(name == "Button")
     newView = new AButton;
   else if(name == "TextView")
