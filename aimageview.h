@@ -6,9 +6,14 @@
 class AImageView : public AView
 {
 public:
+    QString src;
+    QByteArray srcImage;
+
+public:
     AImageView();
 
     QString className() { return "UIImageView"; }
+    void read(QDomNode& element);
     void write(QTextStream& writer, const QString& parentControlName);
 };
 

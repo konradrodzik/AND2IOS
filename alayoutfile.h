@@ -7,6 +7,7 @@ class ALayoutFile : public AView
 {
 public:
   ALayoutFile();
+  QString varName() { return "self"; }
   virtual void read(QDomNode& element);
 
   virtual void writeHeader(QTextStream& writer);
