@@ -3,7 +3,7 @@
 
 #include "atextview.h"
 
-class AImageView : AView
+class AImageView : public AView
 {
 public:
     AImageView();

@@ -8,6 +8,8 @@
 #include "alayoutview.h"
 #include "alinearlayoutview.h"
 #include "atextview.h"
+#include "abutton.h"
+#include "aimageview.h"
 
 AView *AView::createView(const QString &name, AView* view)
 {
@@ -17,8 +19,12 @@ AView *AView::createView(const QString &name, AView* view)
     newView = new AView;
   else if(name == "LinearLayout")
     newView = new ALinearLayoutView;
+  else if(name == "Button")
+    newView = new AButton;
   else if(name == "TextView")
     newView = new ATextView;
+  else if(name == "ImageView")
+    newView = new AImageView;
   else
     newView = NULL;
 

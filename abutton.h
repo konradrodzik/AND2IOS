@@ -3,6 +3,8 @@
 
 #include <QString>
 
+#include "alayoutview.h"
+
 class AButton : public ALayoutView
 {
 public:
@@ -13,6 +15,7 @@ public:
 public:
     AButton();
     QString className() { return "UIButton"; }
+    void write(QTextStream& writer, const QString& parentControlName);
 };
 
 #endif // ABUTTON_H
