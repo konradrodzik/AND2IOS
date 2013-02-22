@@ -28,6 +28,6 @@
 		android:paddingTop="150dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="createNewViewMethod" />
+        android:onClick="createNewViewMethod2" />
 
 </RelativeLayout>
