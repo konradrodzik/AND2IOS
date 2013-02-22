@@ -47,7 +47,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
     }
     writer << "@end" << endl << endl;
 
-    writer << "@implementation " << name << "{" << endl
+    writer << "@implementation " << name << " {" << endl
          << "}" << endl;
     writer << endl;
     foreach(AView* child, allChilds()) {
@@ -105,5 +105,5 @@ void ALayoutFile::writeSource(QTextStream &writer)
 
     writer << endl;
 
-    writer << "@end";
+    writer << "@end" << endl << endl;
 }
