@@ -2,6 +2,7 @@
 
 AView::AView()
 {
+  parent = NULL;
 }
 
 QString AView::className()
@@ -27,7 +28,7 @@ void AView::read(QDomElement &element)
     QDomElement element = node.toElement();
 
     QString name = node.nodeName();
-    AView* newView = createView(name);
+    AView* newView = createView(name, this);
     if(!newView)
       continue;
     childs.append(newView);
@@ -38,4 +39,12 @@ void AView::read(QDomElement &element)
 void AView::write(QTextStream &writer, const QString &parentControlName)
 {
 
+}
+
+QList<AView *> AView::allChilds()
+{
+  QList<AView*> otherChilds = childs;
+  foreach(AView* child, childs)
+    otherChilds.append(child->allChilds());
+  return otherChilds;
 }
