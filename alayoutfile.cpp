@@ -85,11 +85,11 @@ void ALayoutFile::writeSource(QTextStream &writer)
            << "    [super layoutSubviews];" << endl;
 
     foreach(AView* child, allChilds()) {
-        if (child->posX.length() > 0 && child->posY.length() > 0) {
+        if (child->parent == this) {
+                   writer << "\t" << child->varName() << ".frame = self.bounds;" << endl;
+               } else if (child->posX.length() > 0 && child->posY.length() > 0) {
             writer << "\t[" << child->varName() << " sizeToFit];" << endl;
             writer << "\t[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->varName() << ".frame.size.width, " << child->varName() << ".frame.size.height" << ")];" << endl;
-        } else if (child->varName().compare("self")) {
-            writer << "\t" << child->varName() << ".frame = self.bounds;" << endl;
         }
     }
 

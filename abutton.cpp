@@ -38,8 +38,8 @@ void AButton::read(QDomNode &element)
     QDomElement e = element.toElement();
 
     text = e.attribute("android:text");
-    posX = QString::number(atof(qPrintable(e.attribute("android:paddingLeft"))));
-    posY = QString::number(atof(qPrintable(e.attribute("android:paddingTop"))));
+    posX = QString::number(atof(qPrintable(e.attribute("android:layout_marginLeft"))));
+    posY = QString::number(atof(qPrintable(e.attribute("android:layout_marginTop"))));
     width = "0";
     height = "0";
     onClickMethodName = e.attribute("android:onClick");

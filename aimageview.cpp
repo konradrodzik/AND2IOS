@@ -24,8 +24,8 @@ void AImageView::read(QDomNode &element)
             src.clear();
     }
 
-    posX = QString::number(atof(qPrintable(e.attribute("android:paddingLeft"))));
-    posY = QString::number(atof(qPrintable(e.attribute("android:paddingTop"))));
+    posX = QString::number(atof(qPrintable(e.attribute("android:layout_marginLeft"))));
+    posY = QString::number(atof(qPrintable(e.attribute("android:layout_marginTop"))));
     width = "0";
     height = "0";
 }
