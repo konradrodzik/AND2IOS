@@ -13,6 +13,11 @@
 
 QDir layoutDir;
 QDir drawableDir;
+QDir outputDir;
+
+#define NAME_PREFIX "and2ios"
+#define HEADER_NAME NAME_PREFIX ".h"
+#define SOURCE_NAME NAME_PREFIX ".m"
 
 AView *AView::createView(const QString &name, AView* view)
 {
@@ -47,6 +52,10 @@ int main(int argc, char *argv[])
     drawableDir = QDir::current();
     drawableDir.cd("res/drawable");
 
+    outputDir = QDir::current();
+    outputDir.mkdir("output");
+    outputDir.cd("output");
+
     QList<ALayoutFile*> layouts;
 
     foreach(QString fileName, layoutDir.entryList(QStringList("*.xml"))) {
@@ -62,16 +71,16 @@ int main(int argc, char *argv[])
       layouts.append(layoutFile);
     }
 
-    QFile outputHeaderFile("views.h");
+    QFile outputHeaderFile(outputDir.absoluteFilePath(HEADER_NAME));
     outputHeaderFile.open(QFile::WriteOnly);
     QTextStream outputHeader(&outputHeaderFile);
 
-    QFile outputSourceFile("views.m");
+    QFile outputSourceFile(SOURCE_NAME);
     outputSourceFile.open(QFile::WriteOnly);
     QTextStream outputSource(&outputSourceFile);
 
     outputHeader << "#include <UIView.h>" << endl << endl;
-    outputSource << "#include \"views.h\"" << endl << endl;
+    outputSource << "#include \"" << HEADER_NAME << "\"" << endl << endl;
 
     foreach(ALayoutFile* file, layouts) {
       file->writeHeader(outputHeader);
@@ -81,18 +90,3 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-
-
-int aaaa() {
-
-    // TextView ->UILabel
-    // Parameters: objectName,parentName
-
-//    UILabel* %s = [UILabel alloc] initWithRect:CGRectZero];
-//    [%s setBackgroundColor:[UIColor clear]];
-//    [%s setColor:[UIColor redColor]];
-//    [%s addSubview:%s];
-
-
-  return 0;
-}

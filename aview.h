@@ -9,6 +9,7 @@
 
 extern QDir layoutDir;
 extern QDir drawableDir;
+extern QDir outputDir;
 
 inline QString explodeName(QString name) {
     QStringList list = name.split('/');
@@ -18,9 +19,17 @@ inline QString explodeName(QString name) {
     return name;
 }
 
-inline QString captializeName(QString name) {
-    // QString out = QString();
-	return QString();
+inline QString captializeName(QString name, bool firstCapital = false) {
+    if(name.isEmpty())
+        return QString();
+    QString out;
+    foreach(QString item, name.split('_', QString::SkipEmptyParts)) {
+        if(out.isEmpty() && !firstCapital)
+            out += item;
+        else
+            out += item[0].toUpper() + item.midRef(1).toString();
+    }
+    return out;
 }
 
 class AView

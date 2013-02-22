@@ -7,6 +7,7 @@ class AImageView : public AView
 {
 public:
     QString src;
+    QString srcFileName;
     QByteArray srcImage;
 
 public:
