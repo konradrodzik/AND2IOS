@@ -25,7 +25,7 @@ void AButton::write(QTextStream& writer, const QString& parentControlName)
 
     if (onClickMethodName.length() > 0)
     {
-        writer << "[" << varName() << " addTarget:self action:@selector(" << onClickMethodName << ":) forEvent:UIEventTouchUpInside];\n";
+        writer << "[" << varName() << " addTarget:self action:@selector(" << onClickMethodName << ":) forControlEvents:UIControlEventTouchUpInside];\n";
     }
 
     wrtier << "[" << parentControlName << " addSubview:" << varName() << "]\n";
