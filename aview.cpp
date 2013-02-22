@@ -42,6 +42,9 @@ void AView::read(QDomNode &element)
     id = e.attribute("android:id");
     id = explodeName(id);
     id = captializeName(id);
+
+    width = QString::number(atof(qPrintable(e.attribute("android:layout_width"))));
+    height = QString::number(atof(qPrintable(e.attribute("android:layout_height"))));
 }
 
 void AView::write(QTextStream &writer, const QString &parentControlName)
