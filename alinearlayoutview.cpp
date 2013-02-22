@@ -10,6 +10,9 @@ void ALinearLayoutView::read(QDomNode &element)
 
     QDomElement e = element.toElement();
 
+    posX = QString::number(atof(qPrintable(e.attribute("android:paddingLeft"))));
+    posY = QString::number(atof(qPrintable(e.attribute("android:paddingTop"))));
+
     backgroundColor = e.attribute("android:background");
     if(backgroundColor.length() > 0) {
         if(backgroundColor.startsWith("#")) {
