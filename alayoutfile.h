@@ -6,6 +6,9 @@
 class ALayoutFile : public AView
 {
 public:
+    QString name;
+
+public:
   ALayoutFile();
   QString varName() { return "self"; }
   virtual void read(QDomNode& element);

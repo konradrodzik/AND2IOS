@@ -12,44 +12,73 @@ void ALayoutFile::read(QDomNode &element)
 
 void ALayoutFile::writeHeader(QTextStream &writer)
 {
-  writer << "@interface " << varName() << " : UIView {" << endl;
+  writer << "@interface " << name << " : UIView {" << endl;
 
   foreach(AView* child, allChilds()) {
+      if(child->isLocal())
+          continue;
     writer << "\t" << child->className() << " *" << child->varName() << ";" << endl;
   }
 
   writer << "}" << endl << endl;
 
   foreach(AView *child, allChilds()) {
+      if(child->isLocal())
+          continue;
       writer << "@property(nonatomic, readonly) " << child->className() << " *" << child->varName() << ";" << endl;
   }
+  writer << endl;
 
   writer << "-(void)initWithFrame:(CGRect)rect;" << endl;
+  writer << endl;
   writer << "@end" << endl << endl;
 }
 
 void ALayoutFile::writeSource(QTextStream &writer)
 {
-    writer << "@interface " << varName() << "()" << endl << endl;
+    writer << "@interface " << name << "()" << endl;
     foreach(AView *child, allChilds()) {
-        writer << "@property(nonatomic, strong) " << child->className() << " *" << child->varName() << ";" << endl << endl;
+        if(child->isLocal())
+            continue;
+        writer << "@property(nonatomic, strong) " << child->className() << " *" << child->varName() << ";" << endl;
     }
     writer << "@end" << endl << endl;
     // XYZ: function prolog
-    writer << "@implementation " << varName() << "{" << endl
+    writer << "@implementation " << name << "{" << endl
          << "}" << endl;
+    writer << endl;
     foreach(AView* child, allChilds()) {
+        if(child->isLocal())
+            continue;
         writer << "@synthesize " << child->varName() << ";" << endl;
     }
 
     writer << endl;
 
     writer << "-(id)init {" << endl
-           << "    if(self = [super init]) {" << endl;
-    foreach(AView* child, allChilds()) {
-        child->write(writer, child->parent->varName());
-        writer << endl;
+           << "\tif(self = [super init]) {" << endl;
+
+    QByteArray data;
+
+    {
+        QTextStream newStream(&data);
+        foreach(AView* child, allChilds()) {
+            if(child->isLocal())
+                newStream << child->className() << " *" << child->varName() << " = NULL;" << endl;
+            child->write(newStream, child->parent->varName());
+            newStream << endl;
+        }
+        newStream.flush();
     }
+
+    {
+        QTextStream newStream(&data);
+        while(!newStream.atEnd()) {
+            QString line = newStream.readLine();
+            writer << "\t\t" << line << endl;
+        }
+    }
+
     writer << "    }" << endl
            << "    return self;" << endl
            << "}" << endl << endl;
@@ -58,7 +87,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
            << "    [super layoutSubviews];" << endl;
 
     foreach(AView* child, allChilds()) {
-        writer << "[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->width << ", " << child->height << ")];" << endl;
+        writer << "\t[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->width << ", " << child->height << ")];" << endl;
     }
 
     writer << "}" << endl << endl;

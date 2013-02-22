@@ -51,6 +51,9 @@ public:
     virtual void write(QTextStream& writer, const QString& parentControlName);
 
     virtual QList<AView*> allChilds();
+    bool isLocal() const {
+        return id.isEmpty();
+    }
 
 public:
     static AView* createView(const QString& name, AView* view);

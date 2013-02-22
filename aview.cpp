@@ -37,10 +37,10 @@ void AView::read(QDomNode &element)
     newView->read(element);
   }
 
-  QDomElement e = element.toElement();
-  id = e.attribute("android:id");
-  id = explodeName(id);
-  id = captializeName(id);
+    QDomElement e = element.toElement();
+    id = e.attribute("android:id");
+    id = explodeName(id);
+    id = captializeName(id);
 }
 
 void AView::write(QTextStream &writer, const QString &parentControlName)

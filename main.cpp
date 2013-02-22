@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     layoutDir.cd("res/layout");
 
     drawableDir = QDir::current();
-    drawableDir.cd("res/drawable");
+    drawableDir.cd("res/drawable-hdpi");
 
     outputDir = QDir::current();
     outputDir.mkdir("output");
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
       doc.setContent(&file);
 
       ALayoutFile* layoutFile = new ALayoutFile;
-      layoutFile->id = QFileInfo(fileName).baseName();
+      layoutFile->name = captializeName(QFileInfo(fileName).baseName(), true);
       layoutFile->read(doc);
       layouts.append(layoutFile);
     }
@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
     outputHeaderFile.open(QFile::WriteOnly);
     QTextStream outputHeader(&outputHeaderFile);
 
-    QFile outputSourceFile(SOURCE_NAME);
+    QFile outputSourceFile(outputDir.absoluteFilePath(SOURCE_NAME));
     outputSourceFile.open(QFile::WriteOnly);
     QTextStream outputSource(&outputSourceFile);
 
