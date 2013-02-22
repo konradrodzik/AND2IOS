@@ -1,4 +1,5 @@
 #include "aview.h"
+#include "alayoutfile.h"
 
 AView::AView()
 {
@@ -45,7 +46,22 @@ void AView::read(QDomNode &element)
 
 void AView::write(QTextStream &writer, const QString &parentControlName)
 {
+}
 
+void AView::writeSource(QTextStream &writer)
+{
+}
+
+ALayoutFile *AView::file() const
+{
+    AView* p = const_cast<AView*>(this);
+    while(p) {
+        if(dynamic_cast<ALayoutFile*>(p)) {
+            return reinterpret_cast<ALayoutFile*>(p);
+        }
+        p = p->parent;
+    }
+    return NULL;
 }
 
 QList<AView *> AView::allChilds()
@@ -54,4 +70,8 @@ QList<AView *> AView::allChilds()
   foreach(AView* child, childs)
     otherChilds.append(child->allChilds());
   return otherChilds;
+}
+
+void AView::writeHeader(QTextStream &writer)
+{
 }

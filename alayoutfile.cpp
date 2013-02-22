@@ -29,7 +29,10 @@ void ALayoutFile::writeHeader(QTextStream &writer)
   }
   writer << endl;
 
-  writer << "-(id) initWithFrame:(CGRect)rect;" << endl;
+  writer << "-(id) initWithFrame:(CGRect)rect;" << endl;  
+  foreach(AView* child, allChilds()) {
+      child->writeHeader(writer);
+  }
   writer << endl;
   writer << "@end" << endl << endl;
 }
@@ -43,7 +46,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
         writer << "@property(nonatomic, strong) " << child->className() << " *" << child->varName() << ";" << endl;
     }
     writer << "@end" << endl << endl;
-    // XYZ: function prolog
+
     writer << "@implementation " << name << "{" << endl
          << "}" << endl;
     writer << endl;
@@ -95,7 +98,11 @@ void ALayoutFile::writeSource(QTextStream &writer)
 
     writer << "}" << endl << endl;
 
-  // XYZ: function epilog
+    foreach(AView* child, allChilds()) {
+        child->writeSource(writer);
+    }
+
+    writer << endl;
 
     writer << "@end";
 }

@@ -45,3 +45,21 @@ void AButton::read(QDomNode &element)
     onClickMethodName = e.attribute("android:onClick");
     backgroundImageName = e.attribute("android:background");
 }
+
+void AButton::writeSource(QTextStream &writer)
+{
+    if(onClickMethodName.size()) {
+        writer << "-(void) " << onClickMethodName << ":(id)sender {" << endl;
+        writer << "\tNSLog(@\"" << onClickMethodName << " clicked\");" << endl;
+        writer << "}" << endl;
+        writer << endl;
+    }
+}
+
+
+void AButton::writeHeader(QTextStream &writer)
+{
+    if(onClickMethodName.size()) {
+        writer << "-(void) " << onClickMethodName << ":(id)sender;";
+    }
+}
