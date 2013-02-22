@@ -9,15 +9,23 @@
 #include "alinearlayoutview.h"
 #include "atextview.h"
 
-AView *AView::createView(const QString &name)
+AView *AView::createView(const QString &name, AView* view)
 {
+  AView* newView;
+
   if(name == "View")
-    return new AView;
-  if(name == "LinearLayout")
-    return new ALinearLayoutView;
-  if(name == "TextView")
-    return new ATextView;
-  return NULL;
+    newView = new AView;
+  else if(name == "LinearLayout")
+    newView = new ALinearLayoutView;
+  else if(name == "TextView")
+    newView = new ATextView;
+  else
+    newView = NULL;
+
+  if(newView) {
+    newView->parent = view;
+  }
+  return newView;
 }
 
 
@@ -44,9 +52,22 @@ int main(int argc, char *argv[])
       layoutFile->read(element);
     }
 
-    // generate code
-    // here
-    
+    QFile outputHeaderFile("views.h");
+    outputHeaderFile.open(QFile::WriteOnly);
+    QTextStream outputHeader(&outputHeaderFile);
+
+    QFile outputSourceFile("views.m");
+    outputSourceFile.open(QFile::WriteOnly);
+    QTextStream outputSource(&outputSourceFile);
+
+    outputHeader << "#include <UIView.h>" << endl << endl;
+    outputSource << "#include \"views.h\"" << endl << endl;
+
+    foreach(ALayoutFile* file, files) {
+      file->writeHeader(outputHeader);
+      file->writeSource(outputSource);
+    }
+
     return a.exec();
 }
 

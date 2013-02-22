@@ -15,6 +15,7 @@ public:
     QList<AView*> childs;
     QString backgroundColor;
     QString color;
+    AView* parent;
 
 public:
     AView();
@@ -23,8 +24,10 @@ public:
     virtual void read(QDomElement& element);
     virtual void write(QTextStream& writer, const QString& parentControlName);
 
+    virtual QList<AView*> allChilds();
+
 public:
-    static AView* createView(const QString& name);
+    static AView* createView(const QString& name, AView* view);
 };
 
 #endif // AVIEW_H
