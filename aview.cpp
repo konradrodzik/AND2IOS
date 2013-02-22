@@ -12,12 +12,14 @@ QString AView::className()
 
 QString AView::varName()
 {
+    if(!id.isEmpty())
+        return id;
     char buf[66];
     sprintf(buf, "var_%08x", this);
     return buf;
 }
 
-void AView::read(QDomElement &element)
+void AView::read(QDomNode &element)
 {
   QDomNodeList nodeList = element.childNodes();
 

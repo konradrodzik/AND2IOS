@@ -33,23 +33,24 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    QStringList layouts = QDir::current().entryList(QStringList("layout/*.xml"));
+    QDir current = QDir::current();
+    current.cd("res/layout");
 
-    QList<ALayoutFile*> files;
+    QStringList layoutFiles = current.entryList(QStringList("*.xml"));
 
-    foreach(QString fileName, layouts) {
+    QList<ALayoutFile*> layouts;
+
+    foreach(QString fileName, layoutFiles) {
       QDomDocument doc;
-      QFile file(fileName);
+      QFile file(current.absoluteFilePath(fileName));
       if(!file.open(QFile::ReadOnly))
         continue;
       doc.setContent(&file);
 
-      QDomElement element = doc.firstChildElement();
-      if(element.isNull())
-        continue;
-
       ALayoutFile* layoutFile = new ALayoutFile;
-      layoutFile->read(element);
+      layoutFile->id = QFileInfo(fileName).baseName();
+      layoutFile->read(doc);
+      layouts.append(layoutFile);
     }
 
     QFile outputHeaderFile("views.h");
@@ -63,7 +64,7 @@ int main(int argc, char *argv[])
     outputHeader << "#include <UIView.h>" << endl << endl;
     outputSource << "#include \"views.h\"" << endl << endl;
 
-    foreach(ALayoutFile* file, files) {
+    foreach(ALayoutFile* file, layouts) {
       file->writeHeader(outputHeader);
       file->writeSource(outputSource);
     }

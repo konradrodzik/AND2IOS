@@ -4,7 +4,7 @@ ALinearLayoutView::ALinearLayoutView()
 {
 }
 
-void ALinearLayoutView::read(QDomElement &element)
+void ALinearLayoutView::read(QDomNode &element)
 {
 }
 
