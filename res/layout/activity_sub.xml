@@ -10,11 +10,10 @@
 		android:paddingTop="15dip"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:scaleType="center" 
-		android:src="@drawable/name_collision_image" />
+		android:src="@drawable/google_image" />
     
     <TextView android:id="@+id/name_collision_title"
-		android:text="Name Collision"
+		android:text="Second Screen!!!1111oneoneeleven!!"
 		android:textColor="#FF0000FF"
 		android:background="#FFFF0000" 
 		android:paddingLeft="15dip"
