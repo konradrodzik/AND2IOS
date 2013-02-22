@@ -13,7 +13,13 @@ void ALinearLayoutView::write(QTextStream &writer, const QString &parentControlN
 {
     ALayoutView::write(writer, parentControlName);
     writer << varName() << "= [UIView alloc] initWithRect:CGRectZero];" << endl
-           << "[" << parentControlName << " addSubview:" << varName() << "];" << endl
-           << "[" << varName() << "setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")];" << endl;
+           << "[" << parentControlName << " addSubview:" << varName() << "];" << endl;
+    if (posX.length() > 0 && posY.length() > 0) {
+        writer << "[" << varName() << "setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")];" << endl;
+    } else if (parentControlName.length() > 0) {
+        writer << varName() << ".frame = " << parentControlName << ".frame;" << endl;
+    } else {
+        writer << varName() << ".frame = self.bounds;";
+    }
 
 }
