@@ -55,7 +55,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
 
     writer << endl;
 
-    writer << "-(id)init {" << endl
+    writer << "-(void)initWithFrame:(CGRect)rect {" << endl
            << "\tif(self = [super init]) {" << endl;
 
     QByteArray data;
@@ -88,7 +88,7 @@ void ALayoutFile::writeSource(QTextStream &writer)
 
     foreach(AView* child, allChilds()) {
         if (child->posX.length() > 0 && child->posY.length() > 0) {
-            writer << "\t[" << child->varName() << "sizeToFit]" << endl;
+            writer << "\t[" << child->varName() << " sizeToFit];" << endl;
             writer << "\t[" << child->varName() << " setFrame:CGRectMake(" << child->posX << ", " << child->posY << ", " << child->width << ", " << child->height << ")];" << endl;
         }
     }
