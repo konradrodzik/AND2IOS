@@ -7,6 +7,7 @@ class ATextView : public AView
 {
 public:
     QString text;
+    QString tr,tg,tb,ta;
 public:
     ATextView();
     QString className() { return "UILabel"; }

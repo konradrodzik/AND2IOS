@@ -37,6 +37,8 @@ void AImageView::write(QTextStream& writer, const QString& parentControlName)
            << "[" << parentControlName << " addSubview:" << varName() << "];" << endl
            << "[" << varName() << " setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")];" << endl;
 
+
+
     if(!srcImage.isEmpty() && !srcFileName.isEmpty()) {
         QFile outputFile(outputDir.absoluteFilePath(srcFileName));
         if(outputFile.open(QFile::WriteOnly)) {
