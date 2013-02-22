@@ -11,7 +11,10 @@ class AView
 public:
     QString id;
     QString width, height;
+    QString posX,posY;
     QList<AView*> childs;
+    QString backgroundColor;
+    QString color;
 
 public:
     AView();
