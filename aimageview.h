@@ -10,6 +10,7 @@ public:
 
     QString className() { return "UIImageView"; }
     void write(QTextStream& writer, const QString& parentControlName);
+    void read(QDomNode& element);
 };
 
 #endif // AIMAGEVIEW_H

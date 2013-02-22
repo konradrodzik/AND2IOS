@@ -11,5 +11,9 @@ void ALinearLayoutView::read(QDomNode &element)
 
 void ALinearLayoutView::write(QTextStream &writer, const QString &parentControlName)
 {
+    ALayoutView::write(writer, parentControlName);
+    writer << varName() << "= [UIView alloc] initWithRect:CGRectZero];" << endl
+           << "[" << parentControlName << " addSubview:" << varName() << "];" << endl
+           << "[" << varName() << "setFrame:CGRectMake(" << posX << ", " << posY << ", " << width << ", " << height << ")];" << endl;
 
 }
