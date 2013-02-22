@@ -38,7 +38,7 @@
 	android:layout_height="100dip"
 	android	:textColor="#FFFF0000">
 
-	    <TextView android:id="@+id/name_collision_title"
+	    <TextView android:id="@+id/text_in_relative"
 		android:text="Text inside Relative layout"
 		android:textColor="#FF0000FF"
 		android:background="#FFFF0000" 
