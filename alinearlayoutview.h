@@ -6,6 +6,8 @@
 class ALinearLayoutView : public ALayoutView
 {
 public:
+    QString br,bg,bb,ba;
+public:
     ALinearLayoutView();
     virtual void read(QDomNode& element);
     virtual void write(QTextStream& writer, const QString& parentControlName);
