@@ -2,6 +2,7 @@
 #define ABUTTON_H
 
 #include <QString>
+#include "aview.h"
 
 #include "alayoutview.h"
 
