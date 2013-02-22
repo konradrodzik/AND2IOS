@@ -19,12 +19,22 @@ void ALayoutFile::writeHeader(QTextStream &writer)
   }
 
   writer << "}" << endl << endl;
+
+  foreach(AView *child, allChilds()) {
+      writer << "@property(nonatomic, readonly) " << child->className() << " *" << child->varName() << ";" << endl;
+  }
+
   writer << "-(void)initWithFrame:(CGRect)rect;" << endl;
   writer << "@end" << endl << endl;
 }
 
 void ALayoutFile::writeSource(QTextStream &writer)
 {
+    writer << "@interface " << varName() << "()" << endl << endl;
+    foreach(AView *child, allChilds()) {
+        writer << "@property(nonatomic, strong) " << child->className() << " *" << child->varName() << ";" << endl << endl;
+    }
+    writer << "@end" << endl << endl;
     // XYZ: function prolog
     writer << "@implementation " << varName() << "{" << endl
          << "}" << endl;
