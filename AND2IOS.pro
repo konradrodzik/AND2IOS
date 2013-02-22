@@ -20,10 +20,13 @@ SOURCES += main.cpp \
     aview.cpp \
     atextview.cpp \
     alayoutview.cpp \
-    alinearlayoutview.cpp
+    alinearlayoutview.cpp \
+    ../abutton.cpp \
+    abutton.cpp
 
 HEADERS += \
     aview.h \
     atextview.h \
     alayoutview.h \
-    alinearlayoutview.h
+    alinearlayoutview.h \
+    abutton.h
