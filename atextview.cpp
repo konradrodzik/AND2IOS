@@ -56,8 +56,8 @@ void ATextView::read(QDomNode &element)
     }
 
     text = e.attribute("android:text");
-    posX = QString::number(e.attribute("android:paddingLeft").toFloat());
-    posY = QString::number(e.attribute("android:paddingTop").toFloat());
+    posX = QString::number(atof(qPrintable(e.attribute("android:paddingLeft"))));
+    posY = QString::number(atof(qPrintable(e.attribute("android:paddingTop"))));
     width = "0";
     height = "0";
 }
