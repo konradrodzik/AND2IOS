@@ -21,7 +21,7 @@ public:
     AView();
     virtual QString className();
     virtual QString varName();
-    virtual void read(QDomElement& element);
+    virtual void read(QDomNode& element);
     virtual void write(QTextStream& writer, const QString& parentControlName);
 
     virtual QList<AView*> allChilds();

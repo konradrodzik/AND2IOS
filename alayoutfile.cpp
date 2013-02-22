@@ -5,7 +5,7 @@ ALayoutFile::ALayoutFile()
 
 }
 
-void ALayoutFile::read(QDomElement &element)
+void ALayoutFile::read(QDomNode &element)
 {
   AView::read(element);
 }

@@ -4,7 +4,7 @@ ALayoutView::ALayoutView()
 {
 }
 
-void ALayoutView::read(QDomElement &element)
+void ALayoutView::read(QDomNode &element)
 {
 }
 

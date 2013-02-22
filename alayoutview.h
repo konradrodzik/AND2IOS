@@ -7,7 +7,7 @@ class ALayoutView : public AView
 {
 public:
     ALayoutView();
-    virtual void read(QDomElement& element);
+    virtual void read(QDomNode& element);
     virtual void write(QTextStream& writer, const QString& parentControlName);
 };
 
