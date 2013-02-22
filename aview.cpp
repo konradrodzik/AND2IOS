@@ -22,4 +22,5 @@ void AView::read(QDomElement &element)
 
 void AView::write(QTextStream &writer, const QString &parentControlName)
 {
+
 }
